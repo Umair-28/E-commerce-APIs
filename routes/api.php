@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +37,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::middleware(['auth:sanctum', 'isAdmin'])->get('/users/{id}', [Controller::class, 'getUserById']);
     Route::middleware(['auth:sanctum', 'isAdmin'])->delete('/users/{id}', [Controller::class, 'deleteUserById']);
     Route::middleware(['auth:sanctum', 'isAdmin'])->put('/users/{id}', [Controller::class, 'updateUserById']);
+
+    // Product APIs
+
+    Route::get('/products', [ProductController::class, 'getAllProducts']);
+
+    Route::middleware(['auth:sanctum', 'isAdmin'])->post('/product', [ProductController::class, 'addProduct']);
+    Route::middleware(['auth:sanctum', 'isAdmin'])->post('/product/{id}', [ProductController::class, 'updateProduct']);
+    Route::middleware(['auth:sanctum', 'isAdmin'])->delete('/product/{id}', [ProductController::class, 'deleteProduct']);
     
