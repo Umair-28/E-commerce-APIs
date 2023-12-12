@@ -23,7 +23,7 @@ class UserTableSeeder extends Seeder
             'is_admin' => true,
         ]);
 
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 2; $i <= 10; $i++) {
             DB::table('users')->insert([
                 'name' => "User $i",
                 'email' => "user$i@example.com",
